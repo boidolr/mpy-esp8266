@@ -2,12 +2,11 @@
 set -euo pipefail
 
 # arm tool chain
-wget -q -O gcc-arm-none-eabi.tar.bz2 \
-  https://developer.arm.com/-/media/Files/downloads/gnu-rm/10-2020q4/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2
+wget -q -O gcc-arm-none-eabi.tar.bz2 "$GCC_ARM_URL"
 tar xjf gcc-arm-none-eabi.tar.bz2 && mv gcc-arm-none-eabi-* gcc-arm-none-eabi
 rm -vf gcc-arm-none-eabi.tar.bz2
 # esp tool chain
-git clone -q --recursive https://github.com/pfalcon/esp-open-sdk.git
+git clone -q --recursive --depth 1 --jobs 2 https://github.com/pfalcon/esp-open-sdk.git
 cd esp-open-sdk
 # patch check for bash version
 sed -i -e 's/version [(][^)]*[)]/version (3\.[1-9]|4|5)/' crosstool-NG/configure.ac

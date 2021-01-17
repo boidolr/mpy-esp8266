@@ -19,11 +19,18 @@ Vagrant.configure("2") do |config|
     v.check_guest_additions = false
   end
   # set up tooling
-  config.vm.provision "packages", type: "shell", privileged: true, path: "providers/packages.sh"
-  config.vm.provision "toolchain", type: "shell", privileged: false, path: "providers/toolchain.sh"
-  config.vm.provision "micropython", type: "shell", privileged: false, path: "providers/micropython.sh"
-  config.vm.provision "profile", type: "shell", privileged: false, path: "providers/profile.sh"
+  config.vm.provision "packages", type: "shell", privileged: true,
+    path: "providers/packages.sh"
+  config.vm.provision "toolchain", type: "shell", privileged: false,
+    path: "providers/toolchain.sh",
+    env: {"GCC_ARM_URL" => "https://developer.arm.com/-/media/Files/downloads/gnu-rm/10-2020q4/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2"}
+  config.vm.provision "micropython", type: "shell", privileged: false,
+    path: "providers/micropython.sh",
+    env: {"VERSION" => "v1.13"}
+  config.vm.provision "profile", type: "shell", privileged: false,
+    path: "providers/profile.sh"
   config.vm.provision "echo", type: "shell", privileged: false, run: "always",
     inline: "echo Build images with 'vagrant provision --provision-with build-image'"
-  config.vm.provision "build-image", type: "shell", privileged: false, run: "never", path: "providers/build_image.sh"
+  config.vm.provision "build-image", type: "shell", privileged: false, run: "never",
+    path: "providers/build_image.sh"
 end
