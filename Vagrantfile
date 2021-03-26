@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
     env: {"GCC_ARM_URL" => "https://developer.arm.com/-/media/Files/downloads/gnu-rm/10-2020q4/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2"}
   config.vm.provision "micropython", type: "shell", privileged: false,
     path: "providers/micropython.sh",
-    env: {"VERSION" => "v1.13"}
+    env: {"VERSION" => "v1.14"}
   config.vm.provision "profile", type: "shell", privileged: false,
     path: "providers/profile.sh"
   config.vm.provision "echo", type: "shell", privileged: false, run: "always",
