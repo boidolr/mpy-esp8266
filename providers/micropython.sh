@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-git clone -q --recursive --depth 1 --jobs 2 --branch "$VERSION" https://github.com/micropython/micropython.git
+git clone -q --recursive --depth 1 --branch "$VERSION" https://github.com/micropython/micropython.git
 
 cd micropython
-git reset --hard .
+git reset --hard HEAD
 
 # adapt sources to include custom modules
 echo 'SDKCONFIG += boards/sdkconfig.ble' >> "ports/esp8266/boards/GENERIC/mpconfigboard.mk"

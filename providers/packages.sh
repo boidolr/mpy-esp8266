@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # update image
-apt-get -qq update && apt-get -qq upgrade -y
+apt-get -qq update && apt-get -qq upgrade -y && apt-get -qq autoremove -y
 # generic build tools
 apt-get -qq install -y build-essential python-dev python python-serial
 # esp8266 build tools
