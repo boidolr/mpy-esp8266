@@ -40,8 +40,8 @@ repos:
       - id: prettier
         types: [yaml]
 
-  - repo: https://github.com/jumanjihouse/pre-commit-hooks
-    rev: 2.1.4
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.7.1.1
     hooks:
       - id: shellcheck
 
